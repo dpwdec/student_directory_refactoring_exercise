@@ -321,10 +321,10 @@ end
 # uncomment out the methods to test
 # commented here to make output more readable for current exercise
 
-# students = data_entry_loop
-# print_header
-# print_students_list(students)
-# print_footer(students)
+students = data_entry_loop
+#print_header
+#print_students_list(students)
+print_footer(students)
 
 # print_beginwitha(students)
 # print_lessthan12(students)
