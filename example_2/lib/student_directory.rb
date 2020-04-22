@@ -1,5 +1,80 @@
 require 'csv'
 
+class StudentDirectory
+  def initialize
+    @interactive_menu = InteractiveMenu.new
+    @csv_manager = CVSManager.new
+    @data_entry = DataEntry.new
+    @printer = Printer.new
+    @source_code = SourceCode.new
+
+    @students = []
+  end
+end
+
+class InteractiveMenu
+  def print_menu
+      puts "1. Input the students"
+      puts "2. Show the students"
+      puts "3. Save the list to a csv file"
+      puts "4. Load the list from a csv file"
+      puts "5. Print the source code for this programme"
+      puts "9. Exit" # 9 because we'll be adding more items
+  end
+
+  def interactive_menu
+      loop do
+          print_menu
+          process(STDIN.gets.chomp)
+      end
+  end
+
+  def process(selection)
+      case selection
+      when "1"
+          data_entry_loop
+          feedback_message("data entered")
+      when "2"
+          if !@students.empty?
+              show_students
+              feedback_message("data printed")
+          else
+              puts "There are currently no students in the system to display."
+          end
+          # can also use an unless statement: print(students) unless students.empty?
+      when "3"
+          save_students
+          feedback_message("data saved")
+      when "4"
+          load_students
+          feedback_message("data loaded")
+      when "5"
+          source_code
+          feedback_message("source code printed")
+      when "9"
+          exit # this will cause the program to terminate
+      else
+          puts "I don't know what you mean. Try again!"
+      end
+  end
+
+  def feedback_message(operation)
+      puts "\v#{operation.upcase} SUCCESSFULLY!\v"
+  end
+end
+
+class CSVManager
+end
+
+class DataEntry
+end
+
+class Printer
+end
+
+class SourceCode
+end
+
 @students = [] # an empty array accessible to all methods (global variable)
 
 # INTERACTIVE MENU --------------------------------------------------------------
